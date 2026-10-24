@@ -468,6 +468,62 @@ section{position:relative;padding:64px 0}
 @media (min-width:760px){.dock{left:50%;right:auto;width:520px;margin-left:-260px}}
 footer{padding:30px 0 110px;text-align:center;font-size:12px;color:var(--muted)}
 footer .wrap{display:flex;flex-direction:column;gap:4px}
+
+/* ---------- added visuals ---------- */
+.cutbar{position:fixed;left:0;right:0;top:0;height:16px;z-index:40;pointer-events:none}
+.cutbar .cb-line{position:absolute;left:0;right:0;top:7px;border-top:1.5px dashed rgba(142,42,42,.45)}
+.cutbar .cb-done{position:absolute;left:0;right:0;top:6px;height:3px;background:var(--wine);transform-origin:left;transform:scaleX(0)}
+.cutbar .cb-sc{position:absolute;top:-2px;left:0;width:20px;height:20px;color:var(--wine);margin-left:-10px;background:var(--paper);border-radius:50%;padding:2px;box-shadow:0 2px 6px rgba(0,0,0,.25);rotate:90deg}
+.hsc{position:absolute;top:4px;width:22px;height:22px;color:var(--wine);margin-left:-11px;opacity:0;rotate:90deg}
+.letter{position:relative;max-width:340px;height:196px;margin:12px auto 18px}
+.letter .envb,.letter .envf,.letter .flap{position:absolute;left:0;right:0}
+.letter .envb{bottom:0;height:92px;background:#DCCBB0;border-radius:3px}
+.letter .envf{bottom:0;height:92px;background:#EADCC5;border-radius:3px;clip-path:polygon(0 0,50% 58%,100% 0,100% 100%,0 100%);z-index:3;box-shadow:inset 0 -2px 0 rgba(0,0,0,.04)}
+.letter .flap{bottom:92px;height:0}
+.letter .flap:before{content:"";position:absolute;left:0;right:0;top:0;height:60px;background:#E2D1B6;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transform:rotateX(var(--fl,0deg))}
+.letter .flap{z-index:4;bottom:auto;top:104px;height:60px}
+.letter .flap:before{transform:rotateX(var(--fl,0deg));transition:none}
+.letter .lpaper{position:absolute;left:12px;right:12px;bottom:18px;height:128px;background:#FFFDF8 var(--noise);box-shadow:0 6px 16px -8px rgba(40,20,10,.5);z-index:2;padding-top:24px;border-radius:2px}
+.lw{display:flex;justify-content:center;align-items:flex-start}
+.pp{position:relative;display:flex;flex-direction:column;align-items:center}
+.pp b{font:600 clamp(19px,5.6vw,24px)/1 var(--serif);color:var(--ink)}
+.pp i{font:400 12.5px/1.2 var(--hand);color:var(--wine);font-style:normal;margin-top:10px;opacity:0;white-space:nowrap}
+.pp .cutln{position:absolute;left:-1px;top:-8px;height:38px;border-left:1.6px solid var(--wine);transform:scaleY(0);transform-origin:top}
+.letter .pen{position:absolute;top:2px;left:0;width:22px;height:22px;color:var(--ink);opacity:0}
+.letter .lsay{position:absolute;right:-6px;bottom:-12px;z-index:5;background:var(--card)}
+.it{position:relative}
+.it .arw{position:absolute;width:40px;height:auto;top:6px;right:104px;rotate:8deg;overflow:visible}
+.it:nth-of-type(even) .arw{right:auto;left:104px;scale:-1 1;rotate:-8deg}
+.arw use{stroke-dasharray:1;stroke-dashoffset:0}
+.train{max-width:560px;margin:22px auto 0}
+.train svg{width:100%;height:auto;overflow:visible}
+.trcap{display:flex;justify-content:space-between;margin-top:4px;font-size:16px}
+.trcap .hand{color:var(--wine)}
+.bossfig{position:relative}
+.crown{position:absolute;left:50%;top:-30px;width:46px;margin-left:-23px;z-index:3;overflow:visible;rotate:-6deg}
+.bulb{display:grid;grid-template-columns:120px 1fr;gap:30px;align-items:center;max-width:460px;margin:24px auto 0;padding:18px 18px}
+.bulb svg{width:120px;height:auto;overflow:visible}
+#bRays path{stroke-dasharray:1;stroke-dashoffset:1}
+.bulb .bw{display:block;font:500 clamp(28px,8vw,38px)/1.05 var(--serif);color:var(--ink)}
+.bulb .bw i{font-style:normal;color:var(--wine)}
+.bulb .br{display:block;margin-top:6px;font:italic 400 19px/1.25 var(--serif);color:var(--wine)}
+.wave{display:flex;align-items:flex-end;justify-content:center;gap:3px;height:46px;margin:0 auto 8px;max-width:100%}
+.wave i{display:block;width:4px;border-radius:2px;background:var(--line);transform-origin:bottom;height:100%}
+.wave i.hi{background:var(--wine)}
+.sea{position:relative;height:118px;overflow:hidden;margin:0 -16px;border-bottom:1px dashed var(--line)}
+.sea .waves{position:absolute;left:0;bottom:6px;width:200%;height:18px}
+.shipw{position:absolute;left:0;bottom:12px;width:150px}
+.shipw svg{width:150px;height:auto}
+.puff{position:absolute;left:66px;top:6px;width:12px;height:12px;border-radius:50%;border:1.2px solid var(--wine);opacity:0}
+@media (prefers-reduced-motion:no-preference){
+  .sea .waves{animation:waves 6s linear infinite}
+  @keyframes waves{to{translate:-50% 0}}
+  .shipw svg{animation:bob 2.4s ease-in-out infinite alternate}
+  @keyframes bob{from{translate:0 0;rotate:-1.5deg}to{translate:0 3px;rotate:1.5deg}}
+  .puff{animation:puff 2.4s ease-out infinite}
+  .puff:nth-child(2){animation-delay:.8s}.puff:nth-child(3){animation-delay:1.6s}
+  @keyframes puff{0%{opacity:0;translate:0 0;scale:.5}20%{opacity:.9}100%{opacity:0;translate:-26px -46px;scale:2.2}}
+}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 </style>
 
@@ -508,6 +564,7 @@ footer .wrap{display:flex;flex-direction:column;gap:4px}
 <symbol id="i-car" viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></symbol>
 <symbol id="i-utensils" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></symbol>
 <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></symbol>
+<symbol id="i-pen-line" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></symbol>
 
 <defs>
   <radialGradient id="gPearl" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#fff"/><stop offset=".5" stop-color="#EDE7E1"/><stop offset="1" stop-color="#B8AFA8"/></radialGradient>
@@ -556,7 +613,9 @@ footer .wrap{display:flex;flex-direction:column;gap:4px}
   <symbol id="l-scissors" viewBox="0 0 110 80"><g fill="none" stroke="#8E2A2A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="22" cy="22" r="12"/><circle cx="22" cy="58" r="12"/><path d="M32 28l70 30M32 52l70-30"/><circle cx="54" cy="40" r="2"/>
     <path d="M4 40h8M16 40h4" stroke-dasharray="3 3"/></g></symbol>
-  <symbol id="l-arrow" viewBox="0 0 70 40"><path d="M4 34C14 10 40 2 62 10M62 10l-9-6M62 10l-6 9" fill="none" stroke="#2A1A13" stroke-width="1.3" stroke-linecap="round"/></symbol>
+  <symbol id="l-arrow" viewBox="0 0 70 40"><path pathLength="1" d="M4 34C14 10 40 2 62 10M62 10l-9-6M62 10l-6 9" fill="none" stroke="#2A1A13" stroke-width="1.3" stroke-linecap="round"/></symbol>
+  <radialGradient id="gGlow"><stop offset="0" stop-color="#F7D58A" stop-opacity=".95"/><stop offset=".55" stop-color="#F2C46B" stop-opacity=".35"/><stop offset="1" stop-color="#F2C46B" stop-opacity="0"/></radialGradient>
+  <symbol id="l-crown" viewBox="0 0 64 44"><g fill="#F4E6D2" stroke="#8E2A2A" stroke-width="1.6" stroke-linejoin="round"><path d="M6 38L9 12l13 13 10-21 10 21 13-13 3 26z"/><path d="M6 38h52" fill="none"/><circle cx="9" cy="10" r="3"/><circle cx="32" cy="4" r="3"/><circle cx="55" cy="10" r="3"/><path d="M14 32h36" fill="none" stroke-width=".8"/></g></symbol>
 </defs>
 </svg>
 <header class="top">
@@ -569,6 +628,7 @@ footer .wrap{display:flex;flex-direction:column;gap:4px}
   </div>
 </header>
 
+<div class="cutbar" aria-hidden="true"><i class="cb-line"></i><i class="cb-done" id="cutDone"></i><svg class="ic cb-sc" id="cutSc"><use href="#i-scissors"/></svg></div>
 <main>
 <!-- ============ HERO ============ -->
 <section class="hero wood">
@@ -582,6 +642,7 @@ footer .wrap{display:flex;flex-direction:column;gap:4px}
           <div class="w"><span class="art" id="hwA">der</span><span class="p l" id="hwL">Kühl</span><span class="p r" id="hwR">schrank</span></div>
           <div class="lbls"><span id="hwLl">холодный</span><span id="hwRl">шкаф</span></div>
           <div class="mean" id="hwM">= холодильник</div>
+          <svg class="ic hsc" id="hSc"><use href="#i-scissors"/></svg>
         </div>
       </div>
       <svg class="pinpearl" viewBox="0 0 60 60"><use href="#pearl"/></svg>
@@ -603,7 +664,17 @@ footer .wrap{display:flex;flex-direction:column;gap:4px}
         <p class="de">Hauptwohnsitzbestätigung.</p>
         <p>Я прочитал его три раза. Положил письмо на стол. Потом снова взял.</p>
         <p>Говорю соседу, что это. Сосед говорит, Hauptwohnsitzbestätigung. Говорю, это я и сам прочитал.</p>
-        <p>Сосед взял ручку. Провёл три черты. <span class="de">Haupt | wohn | sitz | bestätigung.</span></p>
+        <p>Сосед взял ручку. Провёл три черты.</p>
+        <div class="letter" id="letter">
+          <div class="envb"></div>
+          <div class="lpaper" id="lpaper">
+            <div class="lw" id="lw"><span class="pp"><b>Haupt</b><i>главный</i></span><span class="pp"><s class="cutln"></s><b>wohn</b><i>жить</i></span><span class="pp"><s class="cutln"></s><b>sitz</b><i>место</i></span><span class="pp"><s class="cutln"></s><b>bestätigung</b><i>подтверждение</i></span></div>
+            <svg class="ic pen" id="lpen"><use href="#i-pen-line"/></svg>
+          </div>
+          <div class="envf"></div>
+          <div class="flap" id="lflap"></div>
+          <button type="button" class="say lsay" data-say="Hauptwohnsitzbestätigung"><svg class="ic"><use href="#i-volume-2"/></svg></button>
+        </div>
         <p>Главный · жить · место · подтверждение. Подтверждение главного места жительства.</p>
         <p>Слово, кстати, было не страшное. Страшной была очередь.</p>
         <p class="sign">поэтому собрал самый <span>спокойный гид по длинным словам</span></p>
@@ -622,12 +693,12 @@ footer .wrap{display:flex;flex-direction:column;gap:4px}
     <div class="inside sheet">
       <svg class="clip" style="left:30px;top:-18px" viewBox="0 0 26 70"><use href="#clip"/></svg>
       <h3>Что внутри?</h3>
-      <a class="it" href="#read"><span class="t">читай справа налево<small>главный трюк, после которого любое слово сдаётся</small></span><span class="art"><svg viewBox="0 0 80 110"><use href="#l-fridge"/></svg></span></a>
-      <a class="it" href="#boss"><span class="t">кто тут босс<small>почему у Handschuh артикль der, хотя Hand женского рода</small></span><span class="art"><svg viewBox="0 0 80 104"><use href="#l-glove"/></svg></span></a>
-      <a class="it" href="#glue"><span class="t">клей между словами<small>откуда берутся -s-, -n-, -er-</small></span><span class="art"><svg viewBox="0 0 90 100"><use href="#l-glue"/></svg></span></a>
-      <a class="it" href="#lit"><span class="t">как немцы называют вещи<small>ручной ботинок и светящаяся груша</small></span><span class="art"><svg viewBox="0 0 120 80"><use href="#l-book"/></svg></span></a>
-      <a class="it" href="#monster"><span class="t">слово-монстр на 42 буквы<small>и настоящая компания из Вены</small></span><span class="art"><svg viewBox="0 0 190 100"><use href="#l-ship"/></svg></span></a>
-      <a class="it" href="#build"><span class="t">собери сам и тест<small>конструктор, шесть вопросов, шпаргалка</small></span><span class="art"><svg viewBox="0 0 120 96"><use href="#l-hospital"/></svg></span></a>
+      <a class="it" href="#read"><span class="t">читай справа налево<small>главный трюк, после которого любое слово сдаётся</small></span><svg class="arw" viewBox="0 0 70 40"><use href="#l-arrow"/></svg><span class="art"><svg viewBox="0 0 80 110"><use href="#l-fridge"/></svg></span></a>
+      <a class="it" href="#boss"><svg class="arw" viewBox="0 0 70 40"><use href="#l-arrow"/></svg><span class="t">кто тут босс<small>почему у Handschuh артикль der, хотя Hand женского рода</small></span><span class="art"><svg viewBox="0 0 80 104"><use href="#l-glove"/></svg></span></a>
+      <a class="it" href="#glue"><svg class="arw" viewBox="0 0 70 40"><use href="#l-arrow"/></svg><span class="t">клей между словами<small>откуда берутся -s-, -n-, -er-</small></span><span class="art"><svg viewBox="0 0 90 100"><use href="#l-glue"/></svg></span></a>
+      <a class="it" href="#lit"><svg class="arw" viewBox="0 0 70 40"><use href="#l-arrow"/></svg><span class="t">как немцы называют вещи<small>ручной ботинок и светящаяся груша</small></span><span class="art"><svg viewBox="0 0 120 80"><use href="#l-book"/></svg></span></a>
+      <a class="it" href="#monster"><svg class="arw" viewBox="0 0 70 40"><use href="#l-arrow"/></svg><span class="t">слово-монстр на 42 буквы<small>и настоящая компания из Вены</small></span><span class="art"><svg viewBox="0 0 190 100"><use href="#l-ship"/></svg></span></a>
+      <a class="it" href="#build"><svg class="arw" viewBox="0 0 70 40"><use href="#l-arrow"/></svg><span class="t">собери сам и тест<small>конструктор, шесть вопросов, шпаргалка</small></span><span class="art"><svg viewBox="0 0 120 96"><use href="#l-hospital"/></svg></span></a>
     </div>
   </div>
 </section>
@@ -639,6 +710,33 @@ footer .wrap{display:flex;flex-direction:column;gap:4px}
     <p class="kick">шаг первый</p>
     <h2 class="h2 split">Читай<span class="cal">справа налево</span></h2>
     <p class="lead">Немецкое сложное слово это поезд. Локомотив в конце. Он везёт смысл и артикль. Всё, что спереди, просто вагоны, которые уточняют: какой, для чего, для кого.</p>
+    <div class="train">
+      <svg id="train" viewBox="0 0 360 132" aria-label="Поезд: вагон Kühl прицепляется к локомотиву der Schrank">
+        <path d="M0 118H360" stroke="#2A1A13" stroke-width="1.2"/><path d="M0 123H360" stroke="#2A1A13" stroke-width="1.6" stroke-dasharray="2 10"/>
+        <g id="trWag">
+          <rect x="8" y="58" width="140" height="46" rx="4" fill="#FBF8F2" stroke="#8E2A2A" stroke-width="1.5"/>
+          <path d="M14 66h128" stroke="#8E2A2A" stroke-width=".7"/>
+          <text id="trWagT" x="78" y="92" text-anchor="middle" font-family="Cormorant Garamond" font-weight="600" font-size="22" fill="#2A1A13">Kühl</text>
+          <g class="wh"><circle cx="40" cy="108" r="9" fill="#F2ECE2" stroke="#8E2A2A" stroke-width="1.5"/><path d="M40 99v18M31 108h18" stroke="#8E2A2A"/></g>
+          <g class="wh"><circle cx="116" cy="108" r="9" fill="#F2ECE2" stroke="#8E2A2A" stroke-width="1.5"/><path d="M116 99v18M107 108h18" stroke="#8E2A2A"/></g>
+          <path id="trHook" d="M148 94h10" stroke="#8E2A2A" stroke-width="2.4" stroke-linecap="round"/>
+        </g>
+        <g id="trLoc">
+          <rect x="164" y="64" width="122" height="40" rx="8" fill="#F4E6D2" stroke="#8E2A2A" stroke-width="1.5"/>
+          <rect x="286" y="38" width="56" height="66" rx="3" fill="#F4E6D2" stroke="#8E2A2A" stroke-width="1.5"/>
+          <path d="M280 38h68" stroke="#8E2A2A" stroke-width="2"/><rect x="298" y="48" width="32" height="20" fill="#FBF8F2" stroke="#8E2A2A"/>
+          <rect x="182" y="40" width="16" height="24" fill="#F4E6D2" stroke="#8E2A2A" stroke-width="1.5"/><path d="M178 40h24" stroke="#8E2A2A" stroke-width="2"/>
+          <path d="M226 64v-10a8 8 0 0 1 16 0v10" fill="#F4E6D2" stroke="#8E2A2A" stroke-width="1.5"/>
+          <path d="M156 84h8M158 78l6 6-6 6" stroke="#8E2A2A" stroke-width="1.5" fill="none"/>
+          <text id="trLocT" x="225" y="91" text-anchor="middle" font-family="Cormorant Garamond" font-weight="600" font-size="20" fill="#2A1A13"><tspan fill="#8E2A2A" font-style="italic">der</tspan> Schrank</text>
+          <g class="wh"><circle cx="188" cy="108" r="9" fill="#F2ECE2" stroke="#8E2A2A" stroke-width="1.5"/><path d="M188 99v18M179 108h18" stroke="#8E2A2A"/></g>
+          <g class="wh"><circle cx="244" cy="104" r="13" fill="#F2ECE2" stroke="#8E2A2A" stroke-width="1.5"/><path d="M244 91v26M231 104h26M235 95l18 18M253 95l-18 18" stroke="#8E2A2A" stroke-width=".8"/></g>
+          <g class="wh"><circle cx="314" cy="108" r="9" fill="#F2ECE2" stroke="#8E2A2A" stroke-width="1.5"/><path d="M314 99v18M305 108h18" stroke="#8E2A2A"/></g>
+          <g id="trPuffs" fill="none" stroke="#8E2A2A" stroke-width="1"><circle cx="190" cy="32" r="5"/><circle cx="196" cy="22" r="7"/><circle cx="188" cy="10" r="9"/></g>
+        </g>
+      </svg>
+      <div class="trcap"><span class="hand">вагон: уточняет</span><span class="hand">локомотив: смысл и артикль</span></div>
+    </div>
     <div class="book sheet">
       <div class="rings"><span></span><span></span><span></span><span></span><span></span></div>
       <div class="wsel" id="wsel">
@@ -675,7 +773,7 @@ footer .wrap{display:flex;flex-direction:column;gap:4px}
     <div class="eq" id="eq">
       <figure class="polaroid" style="margin:0"><div class="ph"><svg class="ic" id="eqAi"><use href="#i-hand"/></svg></div><span class="nm" id="eqA"><i>die</i>Hand</span></figure>
       <span class="op">+</span>
-      <figure class="polaroid" style="margin:0"><div class="ph"><svg class="ic" id="eqBi"><use href="#i-footprints"/></svg></div><span class="nm" id="eqB"><i>der</i>Schuh</span></figure>
+      <figure class="polaroid bossfig" style="margin:0"><svg class="crown" id="crown" viewBox="0 0 64 44"><use href="#l-crown"/></svg><div class="ph"><svg class="ic" id="eqBi"><use href="#i-footprints"/></svg></div><span class="nm" id="eqB"><i>der</i>Schuh</span></figure>
       <span class="op">=</span>
       <figure class="polaroid res" style="margin:0"><div class="ph"><svg class="ic" id="eqCi"><use href="#i-hand"/></svg></div><span class="nm" id="eqC"><i>der</i>Handschuh</span></figure>
     </div>
@@ -708,6 +806,26 @@ footer .wrap{display:flex;flex-direction:column;gap:4px}
     <p class="kick">шаг четвёртый</p>
     <h2 class="h2 split">Буквально<span class="cal">как видят, так и зовут</span></h2>
     <p class="lead">Немцы не придумывают слова. Они описывают вещь. Нажми на карточку и переверни.</p>
+    <div class="bulb sheet" id="bulb">
+      <svg viewBox="0 0 120 150" aria-label="Груша превращается в лампочку">
+        <circle id="bGlow" cx="60" cy="58" r="58" fill="url(#gGlow)" opacity="0"/>
+        <g id="bRays" stroke="#B98D4E" stroke-width="2" stroke-linecap="round" fill="none">
+          <path pathLength="1" d="M60 2v-0M60 2V-8"/><path pathLength="1" d="M14 22l-7-6"/><path pathLength="1" d="M106 22l7-6"/><path pathLength="1" d="M4 60h-9"/><path pathLength="1" d="M116 60h9"/><path pathLength="1" d="M14 96l-7 6"/><path pathLength="1" d="M106 96l7 6"/>
+        </g>
+        <g id="bPear" fill="#F6F0E6" stroke="#8E2A2A" stroke-width="1.6" stroke-linejoin="round">
+          <path d="M60 30C48 30 46 46 44 58 40 74 26 86 26 106c0 20 18 32 34 32s34-12 34-32c0-20-14-32-18-48-2-12-4-28-16-28z"/>
+          <path d="M60 30c0-8 3-14 8-18" fill="none"/><path d="M66 16c8-6 18-4 22 2-8 4-16 4-22-2z"/>
+          <path d="M80 92c4 10 4 22-4 32M84 100c2 8 0 16-4 22" fill="none" stroke-width=".7"/>
+        </g>
+        <g id="bBulb" fill="#FBF6EA" stroke="#8E2A2A" stroke-width="1.6" stroke-linejoin="round" opacity="0">
+          <path d="M60 10C34 10 20 30 20 52c0 18 14 30 22 44v12h36V96c8-14 22-26 22-44 0-22-14-42-40-42z"/>
+          <path d="M50 96l2-26 4 8 4-12 4 12 4-8 2 26" fill="none" stroke="#B98D4E" stroke-width="1.8"/>
+          <path d="M42 114h36M44 120h32M46 126h28" fill="none"/><path d="M52 132h16" fill="none" stroke-width="3" stroke-linecap="round"/>
+          <path d="M34 40c2-10 10-18 20-20" fill="none" stroke-width=".8"/>
+        </g>
+      </svg>
+      <div class="bl"><span class="bw" id="bWord">Birne</span><span class="br" id="bRu">груша</span></div>
+    </div>
     <div class="lit" id="lit9"></div>
   </div>
 </section>
@@ -719,6 +837,7 @@ footer .wrap{display:flex;flex-direction:column;gap:4px}
     <h2 class="h2 split">Голос слева<span class="cal">изменения справа</span></h2>
     <p class="lead">Ударение падает на первый кусок. Множественное число меняет последний. Начало звучит, конец работает.</p>
     <div class="sp sheet" id="sp">
+      <div class="wave" id="wave" aria-hidden="true"></div>
       <div class="wd2"><span class="flip" id="spArt" data-from="der" data-to="die"></span> <span class="acc">Kühl</span><span class="flip" id="spEnd" data-from="schrank" data-to="schränke"></span></div>
       <div class="labs"><span>↑ голос здесь</span><span>а меняется здесь ↑</span></div>
       <div class="rows">
@@ -739,7 +858,10 @@ footer .wrap{display:flex;flex-direction:column;gap:4px}
     <h2 class="h2 split">Слово-монстр<span class="cal">42 буквы</span></h2>
     <p class="lead">Самое знаменитое длинное слово собираем с конца. Каждый новый кусок слева просто уточняет то, что справа.</p>
     <div class="mon sheet" id="mon">
-      <svg class="ship" viewBox="0 0 190 100"><use href="#l-ship"/></svg>
+      <div class="sea" id="sea">
+        <div class="shipw" id="shipW"><span class="puff"></span><span class="puff"></span><span class="puff"></span><svg viewBox="0 0 190 100"><use href="#l-ship"/></svg></div>
+        <svg class="waves" viewBox="0 0 720 24" preserveAspectRatio="none"><path d="M0 12c22-9 23 9 45 0s23 9 45 0 23 9 45 0 23 9 45 0 23 9 45 0 23 9 45 0 23 9 45 0 23 9 45 0 23 9 45 0 23 9 45 0 23 9 45 0 23 9 45 0 23 9 45 0 23 9 45 0 23 9 45 0 23 9 45 0" fill="none" stroke="#8E2A2A" stroke-width="1.2"/></svg>
+      </div>
       <div class="mw" id="monW"></div>
       <div class="mm" id="monM"></div>
       <div class="cnt"><span><b id="monL">0</b>букв</span><span><b id="monP">0</b>кусков</span></div>
@@ -881,7 +1003,7 @@ function kInit(){
     hw.classList.remove('cut','res');
     $('#hwA').textContent = d.a; $('#hwL').textContent = d.l; $('#hwR').textContent = d.r; $('#hwLl').textContent = d.ll; $('#hwRl').textContent = d.rl; $('#hwM').textContent = d.m;
     if(G) G.fromTo('#hw .w', {yPercent:30, opacity:0}, {yPercent:0, opacity:1, duration:.6, ease:'power3.out'});
-    hT.push(setTimeout(function(){ hw.classList.add('cut'); }, 1100));
+    hT.push(setTimeout(function(){ hw.classList.add('cut'); var sc = $('#hSc'), r = $('#hwR'); if(G && sc){ var x = r.getBoundingClientRect().left - hw.getBoundingClientRect().left - 5; G.fromTo(sc, {left:x, y:-10, opacity:1}, {y:70, opacity:0, duration:.9, ease:'power2.in'}); } }, 1100));
     hT.push(setTimeout(function(){ hw.classList.add('res'); }, 2100));
     hT.push(setTimeout(function(){ hi = (hi+1) % HW.length; hRun(); }, 4300));
   }
@@ -904,6 +1026,8 @@ function kInit(){
     sL.innerHTML = d.l; sR.firstChild.nodeValue = d.r;
     sTl.innerHTML = d.lt; sTr.innerHTML = d.rt; sRead.innerHTML = d.read + '<big>= ' + d.res + '</big>';
     $$('#wsel .chip').forEach(function(b){ b.classList.toggle('on', +b.dataset.w === i); });
+    if(window.__trainLabel && i !== undefined && setWord.ready) window.__trainLabel(d);
+    setWord.ready = true;
   }
   function setStep(n){
     step = n; var d = SW[wi];
@@ -969,7 +1093,7 @@ function kInit(){
       setTimeout(function(){
         nm('eqA', d.a); nm('eqB', d.b); nm('eqC', d.c); $('#eqCap').textContent = d.cap;
         G.to(figs, {rotationY:0, duration:.5, stagger:.08, ease:'back.out(1.8)'});
-        setTimeout(flyArt, 700);
+        setTimeout(flyArt, 700); window.__crown && window.__crown();
       }, 520);
     } else { nm('eqA', d.a); nm('eqB', d.b); nm('eqC', d.c); $('#eqCap').textContent = d.cap; }
   }
@@ -1034,6 +1158,7 @@ function kInit(){
       G.to(lo, {v:len, duration:.6, onUpdate:function(){ $('#monL').textContent = Math.round(lo.v); }});
     } else $('#monL').textContent = len;
     $('#monP').textContent = n;
+    window.__ship && window.__ship(n, MON.length);
     $('#monNext').textContent = n < MON.length ? 'ещё кусок' : 'заново';
   }
   function monNext(){ monShow(mi < MON.length ? mi+1 : 1); if(mi === MON.length) setTimeout(function(){ say(cap1(MON.map(function(p){ return p[0]; }).reverse().join(''))); }, 400); }
@@ -1142,6 +1267,112 @@ function kInit(){
       new IntersectionObserver(function(es){ es.forEach(function(en){ atPrice = en.isIntersecting; upd(); }); }).observe(priceSec);
     }
   }
+
+
+  /* ---------- scroll scissors ---------- */
+  var cutDone = $('#cutDone'), cutSc = $('#cutSc'), cTick = false;
+  function cutUpd(){
+    cTick = false;
+    var d = document.documentElement, m = d.scrollHeight - innerHeight, p = m > 0 ? Math.min(1, Math.max(0, scrollY / m)) : 0;
+    cutDone.style.transform = 'scaleX(' + p + ')';
+    cutSc.style.left = (p * 100) + '%';
+  }
+  addEventListener('scroll', function(){ if(!cTick){ cTick = true; requestAnimationFrame(cutUpd); } }, {passive:true});
+  cutUpd();
+
+  /* ---------- letter from the envelope ---------- */
+  var letter = $('#letter'), lpaper = $('#lpaper'), lflap = $('#lflap'), lpen = $('#lpen');
+  var cuts = $$('.cutln', letter), pps = $$('.pp', letter), trs = $$('.pp i', letter);
+  function letterFinal(){ lflap.style.setProperty('--fl','180deg'); lflap.style.zIndex = 1; lpaper.style.transform = 'translateY(-40px)'; cuts.forEach(function(c){ c.style.transform = 'scaleY(1)'; }); trs.forEach(function(t){ t.style.opacity = 1; }); pps.slice(1).forEach(function(p){ p.style.marginLeft = '9px'; }); }
+  if(G){
+    G.set(lpaper, {y:78}); G.set(lflap, {'--fl':'0deg', zIndex:4});
+    var ltl = G.timeline({paused:true});
+    ltl.to(lflap, {'--fl':'180deg', duration:.7, ease:'power2.inOut'})
+      .set(lflap, {zIndex:1})
+      .to(lpaper, {y:-40, duration:1, ease:'back.out(1.4)'})
+      .set(lpen, {opacity:1});
+    cuts.forEach(function(c, k){
+      ltl.to(lpen, {x:function(){ var r = c.parentNode.getBoundingClientRect(), b = lpaper.getBoundingClientRect(); return r.left - b.left - 4; }, y:-4, rotation:-20, duration:.45, ease:'power2.inOut'})
+        .to(c, {scaleY:1, duration:.35, ease:'power2.out'})
+        .to(lpen, {y:30, duration:.35, ease:'power2.out'}, '<');
+    });
+    ltl.to(lpen, {opacity:0, duration:.3})
+      .to(pps.slice(1), {marginLeft:9, duration:.6, ease:'back.out(2)'}, '<')
+      .fromTo(trs, {opacity:0, y:-8}, {opacity:1, y:0, duration:.5, stagger:.15}, '-=.2');
+    var lPlayed = false;
+    whenVisible(letter, function(){ if(lPlayed) return; lPlayed = true; ltl.play(); }, null, .6);
+  } else letterFinal();
+
+  /* ---------- hand-drawn arrows ---------- */
+  if(G) $$('.arw use').forEach(function(u){ G.fromTo(u, {strokeDashoffset:1}, {strokeDashoffset:0, duration:1, ease:'power2.inOut', scrollTrigger:{trigger:u.closest('.it'), start:'top 85%', once:true}}); });
+
+  /* ---------- train ---------- */
+  var trWag = $('#trWag'), trLoc = $('#trLoc'), trWagT = $('#trWagT'), trLocT = $('#trLocT');
+  window.__trainLabel = function(d){
+    trWagT.textContent = d.l.replace(/<[^>]+>/g,'');
+    trLocT.innerHTML = '<tspan fill="#8E2A2A" font-style="italic">' + d.art + '</tspan> ' + d.r.charAt(0).toUpperCase() + d.r.slice(1);
+    if(G) G.fromTo([trWagT, trLocT], {y:-14, opacity:0}, {y:0, opacity:1, duration:.5, ease:'back.out(2)', stagger:.1});
+  };
+  if(G){
+    var trTl = G.timeline({scrollTrigger:{trigger:'#train', start:'top 95%', end:'center 50%', scrub:1}});
+    trTl.fromTo(trLoc, {x:-260}, {x:0, ease:'none', duration:1}, 0)
+      .fromTo(trWag, {x:-330}, {x:-26, ease:'none', duration:.8}, 0)
+      .to(trWag, {x:0, ease:'back.out(3)', duration:.2}, .8)
+      .fromTo('#train .wh', {rotation:0}, {rotation:900, transformOrigin:'50% 50%', ease:'none', duration:1}, 0);
+    var puffs = $$('#trPuffs circle'), pT = null;
+    var ptl = G.timeline({repeat:-1, paused:true});
+    puffs.forEach(function(c, k){ ptl.fromTo(c, {opacity:0, scale:.4, x:0, y:10, transformOrigin:'50% 50%'}, {opacity:.9, scale:1.2, x:-10, y:-14, duration:1.2, ease:'power1.out'}, k*.4).to(c, {opacity:0, duration:.5}, k*.4 + .9); });
+    whenVisible($('#train'), function(){ ptl.play(); }, function(){ ptl.pause(); });
+  }
+
+  /* ---------- crown on the boss ---------- */
+  var crown = $('#crown');
+  window.__crown = function(){ if(G) G.fromTo(crown, {y:-50, rotation:-30, opacity:0}, {y:0, rotation:-6, opacity:1, duration:.9, ease:'bounce.out'}); };
+
+  /* ---------- pear becomes a light bulb ---------- */
+  var bPear = $('#bPear'), bBulb = $('#bBulb'), bGlow = $('#bGlow'), bRays = $$('#bRays path'), bWord = $('#bWord'), bRu = $('#bRu');
+  function bSet(w, r){ bWord.innerHTML = w; bRu.textContent = r; if(G) G.fromTo([bWord, bRu], {y:10, opacity:0}, {y:0, opacity:1, duration:.5, stagger:.08, ease:'back.out(2)'}); }
+  if(G){
+    var btl = G.timeline({repeat:-1, paused:true, repeatDelay:.6});
+    btl.call(function(){ bSet('Birne', 'груша'); })
+      .set(bPear, {opacity:1, scale:1, transformOrigin:'50% 60%'}).set(bBulb, {opacity:0, scale:.85, transformOrigin:'50% 60%'}).set(bGlow, {opacity:0}).set(bRays, {strokeDashoffset:1})
+      .from(bPear, {rotation:-12, y:-10, duration:.8, ease:'elastic.out(1,.5)'})
+      .call(function(){ bSet('<i>Glüh</i> + Birne', 'светящаяся + груша'); }, null, '+=1')
+      .to(bGlow, {opacity:1, duration:.6})
+      .to(bRays, {strokeDashoffset:0, duration:.5, stagger:.05}, '<')
+      .to(bPear, {opacity:0, scale:.9, duration:.5}, '+=.4')
+      .to(bBulb, {opacity:1, scale:1, duration:.7, ease:'back.out(2)'}, '<')
+      .call(function(){ bSet('die <i>Glüh</i>birne', '= лампочка'); })
+      .to(bGlow, {opacity:.55, duration:.25, yoyo:true, repeat:5}, '+=.2')
+      .to({}, {duration:1.4});
+    whenVisible($('#bulb'), function(){ btl.play(); }, function(){ btl.pause(); });
+  } else { bPear.setAttribute('opacity', 0); bBulb.setAttribute('opacity', 1); bGlow.setAttribute('opacity', .8); bSet('die <i>Glüh</i>birne', '= лампочка. Буквально светящаяся груша'); }
+
+  /* ---------- stress wave ---------- */
+  var wave = $('#wave'), acc = $('.sp .acc'), wd2 = $('.sp .wd2'), wT = null, bars = [];
+  function buildWave(){
+    var W = wd2.getBoundingClientRect(), A = acc.getBoundingClientRect(), n = Math.max(16, Math.floor(Math.min(W.width, wave.parentNode.clientWidth) / 7));
+    wave.innerHTML = ''; bars = [];
+    var start = Math.max(W.left, wave.getBoundingClientRect().left), width = Math.min(W.width, wave.parentNode.clientWidth);
+    for(var i=0;i<n;i++){
+      var x = start + (i + .5) * width / n, hi = x >= A.left - 4 && x <= A.right + 4;
+      var el = document.createElement('i'); if(hi) el.className = 'hi'; el.dataset.h = hi ? (.75 + Math.random()*.25) : (.15 + Math.random()*.25);
+      el.style.transform = 'scaleY(' + el.dataset.h + ')'; wave.appendChild(el); bars.push(el);
+    }
+    wave.style.width = width + 'px';
+  }
+  function waveTick(){ bars.forEach(function(b){ var h = +b.dataset.h, v = Math.max(.08, h * (.6 + Math.random()*.5)); if(G) G.to(b, {scaleY:v, duration:.35, ease:'sine.inOut'}); else b.style.transform = 'scaleY(' + v + ')'; }); }
+  buildWave();
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(buildWave);
+  addEventListener('resize', buildWave);
+  if(!reduce) whenVisible($('#sp'), function(){ if(wT) return; wT = setInterval(waveTick, 380); }, function(){ clearInterval(wT); wT = null; });
+
+  /* ---------- ship pulls the monster ---------- */
+  var sea = $('#sea'), shipW = $('#shipW');
+  window.__ship = function(n, total){
+    var max = Math.max(0, sea.clientWidth - 150), x = 10 + (max - 20) * (n - 1) / (total - 1);
+    if(G) G.to(shipW, {x:x, duration:1.4, ease:'power2.inOut'}); else shipW.style.transform = 'translateX(' + x + 'px)';
+  };
 
   /* ---------- videos ---------- */
   var pio = 'IntersectionObserver' in window ? new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ var v = en.target; if(v.dataset.poster) v.poster = v.dataset.poster; pio.unobserve(v); } }); }, {rootMargin:'900px 0px'}) : null;
